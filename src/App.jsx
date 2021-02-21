@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import "./styles.css";
 
 export const App = () => {
   return (
@@ -8,27 +8,27 @@ export const App = () => {
         <input placeholder="TODO" type="text" />
         <button>追加</button>
       </div>
-      <div>
-        <p>未完了のTODO</p>
+      <div className="incompleteArea">
+        <p className="title">未完了のTODO</p>
         <div>
-          <ul>
+          <ul className="listRow">
             <li>あああああ</li>
             <button>完了</button>
             <button>削除</button>
           </ul>
         </div>
         <div>
-          <ul>
+          <ul className="listRow">
             <li>いいいいいい</li>
             <button>完了</button>
             <button>削除</button>
           </ul>
         </div>
       </div>
-      <div>
-        <p>完了したTODO</p>
+      <div className="completeArea">
+        <p className="title">完了したTODO</p>
         <div>
-          <ul>
+          <ul className="listRow">
             <li>うううううう</li>
             <button>戻す</button>
           </ul>
