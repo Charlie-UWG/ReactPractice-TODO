@@ -18,6 +18,31 @@ export const App = () => {
     setInCompleteTodos(newTodos);
     setTodoText(""); // 追加ボタン押したあとに表示をリセット
   };
+  // 削除ボタンの関数
+  const onClickDelete = (index) => {
+    const newTodos = [...inCompleteTodos];
+    newTodos.splice(index, 1);
+    setInCompleteTodos(newTodos);
+  };
+
+  const onClickComp = (index) => {
+    const newIncompleteTodos = [...inCompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+
+    const newCompleteTodos = [...completeTodos, inCompleteTodos[index]]; //配列のindex番目のデータを取り出す
+    setInCompleteTodos(newIncompleteTodos);
+    setcompleteTodos(newCompleteTodos);
+  };
+
+  const onClickBack = (index) => {
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+
+    const newIncompleteTodos = [...inCompleteTodos, completeTodos[index]];
+
+    setcompleteTodos(newCompleteTodos);
+    setInCompleteTodos(newIncompleteTodos);
+  };
 
   return (
     <>
@@ -37,8 +62,8 @@ export const App = () => {
             return (
               <div key={todo} className="listRow">
                 <li>{todo}</li>
-                <button>完了</button>
-                <button>削除</button>
+                <button onClick={() => onClickComp(index)}>完了</button>
+                <button onClick={() => onClickDelete(index)}>削除</button>
               </div>
             );
           })}
@@ -47,11 +72,11 @@ export const App = () => {
       <div className="completeArea">
         <p className="title">完了したTODO</p>
         <ul>
-          {completeTodos.map((todo) => {
+          {completeTodos.map((todo, index) => {
             return (
               <div key={todo} className="listRow">
                 <li>{todo}</li>
-                <button>戻す</button>
+                <button onClick={() => onClickBack(index)}>戻す</button>
               </div>
             );
           })}
